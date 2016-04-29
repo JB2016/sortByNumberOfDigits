@@ -1,0 +1,40 @@
+public class sort {
+
+	private static int numOfDigits(int arrayToSort) {
+		int count = 0;
+		double temp = arrayToSort;
+		while (temp > 1){
+			temp = temp / 10;
+			count++;
+		}
+		return count; 
+		/**
+		Returns how many times number can be divided by 10 before it is less than 1
+		For example 99/10 = 9.9 which /10 = 0.99 therefore count 2, whereas 7/10 = .7 therefore count = 1
+		**/
+	}
+		
+	@SuppressWarnings("unused")
+	public static void main(String[] args) {
+			// TODO Auto-generated method stub
+	
+		int[] arrayToSort = null;
+		
+		if (arrayToSort==null){
+			return;
+		}
+		
+		for(int i = 1; i<arrayToSort.length; i++){
+			int backup = arrayToSort[i];
+			int k = i-1;
+			while (k>=0 && numOfDigits(arrayToSort[k+1])<numOfDigits(arrayToSort[k])){
+				arrayToSort[k+1] = arrayToSort[k];
+				k--;
+			}
+			arrayToSort[k+1] = backup;
+		}
+		for (int j = 0; j<arrayToSort.length; j++){
+			System.out.println(arrayToSort[j]);
+		}
+	}
+}
